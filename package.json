@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "build": "webpack --config webpack.config.js"
+
   },
   "keywords": [],
   "author": "",
