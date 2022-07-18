@@ -20,7 +20,7 @@ import { clearHash } from "./src/controllers/cachingControllers/redis.Controller
 const port = process.env.PORT || 7777;
 
 const app = express();
-
+app.enable('trust proxy')
 app.use(cookieParser());
 
 // allow cors requests from any origin and with credentials
