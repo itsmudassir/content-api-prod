@@ -4,7 +4,7 @@ import elasticsearch from "elasticsearch";
 export const index = process.env.ELASTIC_INDEX;
 const type = "_doc";
 
-
+ 
 
 const host = process.env.ELASTICSEARCH_HOST_1;
 // const host = process.env.ELASTICSEARCH_HOST_2;
