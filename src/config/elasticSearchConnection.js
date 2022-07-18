@@ -1,7 +1,7 @@
 import elasticsearch from "elasticsearch";
 
 // Core ES variables for this project
-export const index = "content_system_v3";
+export const index = process.env.ELASTIC_INDEX;
 const type = "_doc";
 
 
