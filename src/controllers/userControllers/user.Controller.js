@@ -175,7 +175,7 @@ function setTokenCookie(res, token) {
         
 sameSite : "none",
 secure: true,
-domain: "content-api-react-client-prod-phg59017w-itsmudassir.vercel.app",
+domain: "https://content-api-react-client-prod-phg59017w-itsmudassir.vercel.app",
 httpOnly: true
 
         
