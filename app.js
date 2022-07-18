@@ -24,12 +24,15 @@ const app = express();
 app.use(cookieParser());
 
 // allow cors requests from any origin and with credentials
-app.use(
-  cors({
-    origin: (origin, callback) => callback(null, true),
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: (origin, callback) => callback(null, true),
+//     credentials: true,
+//   })
+// );
+
+app.use(cors())
+
 
 // server.applyMiddleware({ app });
 
