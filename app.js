@@ -13,7 +13,7 @@ import errorHandler from "./src/middlewares/errorHandler.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 // import { server } from "./src/GQL_SearchKit/gqlSearchkit.js";
-
+import wakeupModel from "./src/models/wakeupModel/wakeup.model.js";
 // cache
 import { clearHash } from "./src/controllers/cachingControllers/redis.Controller.js";
 
@@ -48,9 +48,26 @@ app.use("/api/articleSearch", articleSearch);
 app.use("/api/customTopicSearch", customTopicSearch);
 app.use("/api/insights", insights);
 app.use("/api/followedTopics", followedTopics);
-app.get("/saad", (req, res)=>{
-    res.send("SAAD")
+
+app.get("/wakeup", async (req, res)=>{
+
+  try {
+    const title = await wakeupModel.findOne({"title":"john"});
+    console.log(title)
+    res.send(title)
+
+
+}
+catch (err) {
+    throw err.message
+    res.send("db error")
+
+}
+
 })
+app.get('*', function(req, res){
+  res.status(404).send("no route")
+});
 
 // error handling middleware
 app.use(errorHandler);
