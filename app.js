@@ -21,8 +21,8 @@ const port = process.env.PORT || 7777;
 
 const app = express();
 
+app.set('trust proxy', 1)
 
-app.set('trust proxy', 'loopback');
 app.use(cookieParser());
 
 // allow cors requests from any origin and with credentials
