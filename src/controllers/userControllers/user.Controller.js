@@ -172,7 +172,12 @@ function setTokenCookie(res, token) {
     const cookieOptions = {
 //         httpOnly: false,
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-//         secure: true
+        
+sameSite : "none",
+secure: true,
+domain: "content-api-react-client-prod-phg59017w-itsmudassir.vercel.app",
+httpOnly: true
+
         
     };
     res.cookie('refreshToken', token, cookieOptions);
