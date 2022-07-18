@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js"
-
-
   },
   "keywords": [],
   "author": "",
