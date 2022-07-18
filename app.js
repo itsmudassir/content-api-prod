@@ -21,7 +21,7 @@ const port = process.env.PORT || 7777;
 
 const app = express();
 
-app.set('trust proxy', 1)
+// app.set('trust proxy', 1)
 
 app.use(cookieParser());
 
