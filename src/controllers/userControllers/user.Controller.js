@@ -47,7 +47,10 @@ function authenticate(req, res, next) {
     const ipAddress = req.ip;
     userService.authenticate({ email, password, ipAddress })
         .then(({ refreshToken, ...user }) => {
-            setTokenCookie(res, refreshToken);
+            // setTokenCookie(res, refreshToken);
+
+            user['refreshToken']=refreshToken
+            console.log(user)
             res.json(user);
         })
         .catch(next);
@@ -56,7 +59,8 @@ function authenticate(req, res, next) {
 function revokeToken(req, res, next) {
 
     // accept token from request body or cookie
-    const token = req.body.token || req.cookies.refreshToken;
+    // const token = req.body.refreshToken || req.cookies.refreshToken;
+    const token = req.body.refreshtoken;
     const ipAddress = req.ip;
 
     if (!token) return res.status(400).json({ message: 'Token is required' });
@@ -107,14 +111,19 @@ function resetPassword(req, res, next) {
 
 
 function refreshToken(req, res, next) {
-    const token = req.cookies.refreshToken;
+    // const token = req.body.refreshToken || req.cookies.refreshToken;
+    const token = req.body.refreshtoken ;
+    console.log("refreshTok",token)
     const ipAddress = req.ip;
     userService.refreshToken({ token, ipAddress })
         .then(({ refreshToken, ...user }) => {
             setTokenCookie(res, refreshToken);
+            user['refreshToken']=refreshToken
             res.json(user);
         })
         .catch(next);
+    
+ 
 }
 
 
@@ -170,14 +179,10 @@ function getById(req, res, next) {
 function setTokenCookie(res, token) {
     // create cookie with refresh token that expires in 7 days
     const cookieOptions = {
-//         httpOnly: false,
+        // httpOnly: false,
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        
-sameSite : "none",
-secure: true,
-domain: "https://content-api-react-client-prod-phg59017w-itsmudassir.vercel.app",
-httpOnly: true
-
+        // sameSite: 'false',
+        // secure: true
         
     };
     res.cookie('refreshToken', token, cookieOptions);
